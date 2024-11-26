@@ -1,8 +1,9 @@
-1.)List Reverse and Join Function:
-
-- What’s the time complexity of the join function?  
-- What’s the time complexity of the rev function when reversing a list?  
-- Are you satisfied with the running time? If not, what can you do to improve it?
+1.)recall your implementation of list reverse:
+rev [] = []
+rev (x:xs) = join (rev xs, [x])
+- how long does join take?
+- how long does your rev take to compute the reverse of a list 
+- are you satisfied with the running time?
 
 
 - function Join: 
@@ -23,18 +24,23 @@
         rev' [] acc = acc
         rev' (x:xs) acc = rev' xs (x:acc)
 
-2.)fibonacci Function:
+2.)write a function for Fibonacci numbers:
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
 
-- Write a function for fibonacci numbers:  
-- What’s the type of your fibo function?  
-- How long does your fibo function take to compute fibo n?  
-- Are you satisfied with the running time? If not, what would you like to do to improve the efficiency?
+-please take care of improper inputs
+-what's the type of your fib?
+-how long does your fib take to compute fib n?
+-are you satisfied with the running time?
 
 - function fiboonacci: 
-
-    fibo 0 = 0
-    fibo 1 = 1
-    fibo n = fibo (n-1) + fibo (n-2)
+fibo :: Integer -> Integer
+fibo n
+    | n < 0     = error 
+    | n == 0    = 0
+    | n == 1    = 1
+    | otherwise = fibo (n-1) + fibo (n-2)
     
 
 - type ของ fiboonacci:   
