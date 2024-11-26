@@ -1,0 +1,57 @@
+1.)List Reverse and Join Function:
+
+- What’s the time complexity of the join function?  
+- What’s the time complexity of the rev function when reversing a list?  
+- Are you satisfied with the running time? If not, what can you do to improve it?
+
+
+- function Join: 
+    function join ใช้สำหรับเชื่อมสองlistเข้าด้วยกัน ในกรณีของfunction rev, join จะใช้ในการเชื่อมผลลัพธ์ของการกลับ list ย่อย (rev xs) 
+    กับค่าปัจจุบัน ดังนัน้ [x] functionjoin มีเวลาในการทำงานที่ขึ้นอยู่กับขนาดของlistทั้งสอง ถ้าlistแรกมีขนาด n และlistที่สองมีขนาด m, function joinจะใช้เวลา O(n + m) .
+
+- function Reverse: 
+    function rev ใช้การเรียกตัวเองแบบ Recursion เพื่อกลับlist โดยในแต่ละขั้นตอนจะมีการใช้function join ที่ใช้เวลา O(n) 
+    ดังนั้นเวลาในการทำงานรวมของ rev คือ  O(n^2)  ซึ่ง  n  คือขนาดของlist.
+
+- are you satisfied with the running time?
+    เวลา O(n^2) ไม่ค่อยมีประสิทธิภาพ ดังนั้นถ้าต้องการแก้ไขใช้ Tail Recursion เพื่อให้เวลาการทำงานเป็น O(n).
+
+    Ex:
+    rev :: [a] -> [a]
+    rev xs = rev' xs []
+      where
+        rev' [] acc = acc
+        rev' (x:xs) acc = rev' xs (x:acc)
+
+2.)fibonacci Function:
+
+- Write a function for fibonacci numbers:  
+- What’s the type of your fibo function?  
+- How long does your fibo function take to compute fibo n?  
+- Are you satisfied with the running time? If not, what would you like to do to improve the efficiency?
+
+- function fiboonacci: 
+
+    fibo 0 = 0
+    fibo 1 = 1
+    fibo n = fibo (n-1) + fibo (n-2)
+    
+
+- type ของ fiboonacci:   
+    fibo :: Integer -> Integer
+    
+- BigO=?
+    เวลาที่ใช้ในการคำนวณ fibonacci ด้วยfunctionนี้คือ  O(2^n) , ซึ่ง  n คือ argument ที่ส่งเข้าไปในfunction fibo 
+    เนื่องจากการเรียกfunction fibo(n) จะทำให้เกิดการเรียก function fibo (n-1) และ fibo (n-2), ทำให้จำนวนการเรียกเป็นแบบ 2^n
+
+- are you satisfied with the running time?
+    BigO= O(2^n)ไม่ค่อยมีประสิทธิภาพ สามารถแก้ได้โดยการใช้ การคำนวณแบบ Iterative เพื่อให้เวลาในการทำงาน= O(n)
+
+    Ex:
+    fibo :: Integer -> Integer
+    fibo n = fiboIter n 0 1
+      where
+        fiboIter 0 a b = a
+        fiboIter n a b = fiboIter (n-1) b (a+b)
+    
+
